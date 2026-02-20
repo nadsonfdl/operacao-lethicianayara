@@ -19,8 +19,12 @@ body{
     overflow:hidden;
     color:#fff;
 }
-
-/* Luz viatura */
+.countdown {
+    font-size: 48px;
+    font-weight: 700;
+    color: #d4af37;
+    margin-top: 15px;
+}
 body::before, body::after{
     content:"";
     position:absolute;
@@ -62,7 +66,7 @@ body::after{right:0;background:#001f5c;animation-delay:1s;}
     50%{transform:scale(1.25);}
     100%{transform:scale(1);}
 }
-/* Barra de rolagem estilizada */
+    
 .container::-webkit-scrollbar {
     width:6px;
 }
@@ -136,13 +140,12 @@ button{
     </div>
 </div>
 
-<!-- Áudios -->
 <audio id="sirene">
-    <source src="https://actions.google.com/sounds/v1/emergency/emergency_siren.ogg" type="audio/ogg">
+    <source src="sirene.mp3">
 </audio>
 
 <audio id="piano" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b64f3.mp3?filename=happy-birthday-piano-version-112194.mp3" type="audio/mpeg">
+    <source src="piano.mp3">
 </audio>
 
 <script>
