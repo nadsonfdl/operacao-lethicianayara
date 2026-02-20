@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arquivo Ultra Confidencial</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 body{
     margin:0;
-    font-family:'Segoe UI', sans-serif;
+    font-family:'Rajdhani', sans-serif;
     background:linear-gradient(135deg,#0a1a2f,#111);
     display:flex;
     justify-content:center;
@@ -18,7 +20,7 @@ body{
     color:#fff;
 }
 
-/* Luz viatura elegante */
+/* Luz viatura */
 body::before, body::after{
     content:"";
     position:absolute;
@@ -40,13 +42,34 @@ body::after{right:0;background:#001f5c;animation-delay:1s;}
     position:relative;
     width:92%;
     max-width:420px;
+    max-height:85vh;
     background:rgba(10,20,40,0.97);
     border:2px solid #d4af37;
-    padding:30px;
+    padding:28px;
     border-radius:22px;
     text-align:center;
     box-shadow:0 0 30px rgba(212,175,55,0.4);
     z-index:1;
+    overflow-y:auto;
+}
+
+/* Barra de rolagem estilizada */
+.container::-webkit-scrollbar {
+    width:6px;
+}
+.container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.container::-webkit-scrollbar-thumb {
+    background:#d4af37;
+    border-radius:10px;
+}
+
+h2{
+    margin-top:0;
+    color:#d4af37;
+    font-weight:700;
+    letter-spacing:2px;
 }
 
 button{
@@ -55,60 +78,26 @@ button{
     color:#0a1a2f;
     border:none;
     padding:12px 25px;
-    font-weight:bold;
+    font-weight:700;
     border-radius:14px;
     cursor:pointer;
     font-size:16px;
 }
 
-.hidden{display:none;}
-
-.faceid{
-    font-size:50px;
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-    0%{opacity:0.5;}
-    50%{opacity:1;}
-    100%{opacity:0.5;}
-}
-
-.countdown{
-    font-size:28px;
+.typing{
+    white-space:pre-line;
+    font-size:16px;
+    line-height:1.6;
     margin-top:15px;
-    color:#d4af37;
-}
-
-.medalha{
-    font-size:40px;
-    animation:cair 1s ease-out;
-}
-
-@keyframes cair{
-    from{transform:translateY(-40px);opacity:0;}
-    to{transform:translateY(0);opacity:1;}
 }
 
 .footer{
-    margin-top:20px;
+    margin-top:25px;
     color:#d4af37;
+    font-weight:600;
 }
 
-.typing{white-space:pre-line;}
-
-.heart{
-    position:absolute;
-    color:#d4af37;
-    animation:subir 4s linear infinite;
-    font-size:14px;
-    opacity:0.6;
-}
-
-@keyframes subir{
-    from{transform:translateY(100vh);opacity:0;}
-    to{transform:translateY(-10vh);opacity:0.8;}
-}
+.hidden{display:none;}
 </style>
 </head>
 
