@@ -1,156 +1,259 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arquivo Ultra Confidencial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossiê Ultra Confidencial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --blue-dark: #0a1a2f;
+            --police-blue: #001f5c;
+            --police-red: #8B0000;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family:'Rajdhani', sans-serif;
-    background:linear-gradient(135deg,#0a1a2f,#111);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
-    color:#fff;
-}
-.countdown {
-    font-size: 48px;
-    font-weight: 700;
-    color: #d4af37;
-    margin-top: 15px;
-}
-body::before, body::after{
-    content:"";
-    position:absolute;
-    top:0;
-    width:50%;
-    height:100%;
-    opacity:0.04;
-    animation:flash 2s infinite alternate;
-}
-body::before{left:0;background:#8B0000;}
-body::after{right:0;background:#001f5c;animation-delay:1s;}
+        body {
+            margin: 0;
+            font-family: 'Rajdhani', sans-serif;
+            background: radial-gradient(circle at center, #111 0%, #050a14 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+            position: relative;
+        }
 
-@keyframes flash{
-    from{opacity:0.02;}
-    to{opacity:0.10;}
-}
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 0;
+            animation: emergency 3s infinite alternate;
+            transition: opacity 2s ease-out;
+        }
+        body::before { left: 0; background: var(--police-red); }
+        body::after { right: 0; background: var(--police-blue); animation-delay: 1.5s; }
+        body.celebrating::before, body.celebrating::after { opacity: 0; }
 
-.container{
-    position:relative;
-    width:92%;
-    max-width:420px;
-    max-height:85vh;
-    background:rgba(10,20,40,0.97);
-    border:2px solid #d4af37;
-    padding:28px;
-    border-radius:22px;
-    text-align:center;
-    box-shadow:0 0 30px rgba(212,175,55,0.4);
-    z-index:1;
-    overflow-y:auto;
-}
-.pulse{
-    animation: pulsar 1.2s infinite;
-    display:inline-block;
+        @keyframes emergency {
+            0% { opacity: 0.02; }
+            100% { opacity: 0.12; }
+        }
+.sparkle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 6;
+    animation: sparkleAnim 2s linear forwards; 
 }
 
-@keyframes pulsar{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.25);}
-    100%{transform:scale(1);}
-}
-    
-.container::-webkit-scrollbar {
-    width:6px;
-}
-.container::-webkit-scrollbar-track {
-    background: transparent;
-}
-.container::-webkit-scrollbar-thumb {
-    background:#d4af37;
-    border-radius:10px;
+@keyframes sparkleAnim {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 10px var(--gold); }
+    100% { transform: scale(0); opacity: 0; }
 }
 
-h2{
-    margin-top:0;
-    color:#d4af37;
-    font-weight:700;
-    letter-spacing:2px;
-}
+        #stars-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            display: none;
+            animation: fadeInStars 3s ease-in;
+        }
+        @keyframes fadeInStars { from { opacity: 0; } to { opacity: 1; }}
+        
+        .stars, .stars2, .stars3 {
+            position: absolute;    top: 50%; left: 50%;
+            width: 2px; height: 2px;
+            background: transparent;
+            box-shadow: 
+                -10vw -20vh 1px white, 20vw 30vh 1px gold, -30vw 10vh 1px white, 
+                40vw -40vh 1px gold, -10vw 30vh 1px white, 0vw -10vh 1px gold,
+                25vw -25vh 1px white, -45vw 25vh 1px gold, 15vw 45vh 1px white;
+            animation: twinkle 5s infinite alternate;
+        }
+        .stars2 {
+            width: 3px; height: 3px;
+            box-shadow: 
+                15vw 15vh 1px gold, -25vw -35vh 1px white, 35vw 5vh 1px gold, 
+                -5vw -45vh 1px white, 10vw 35vh 1px gold, -35vw 15vh 1px white;
+            animation-delay: 1.5s; animation-duration: 7s;
+        }
+        @keyframes twinkle { 0% { opacity: 0.4; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.1); }}
 
-button{
-    margin-top:20px;
-    background:#d4af37;
-    color:#0a1a2f;
-    border:none;
-    padding:12px 25px;
-    font-weight:700;
-    border-radius:14px;
-    cursor:pointer;
-    font-size:16px;
-}
+        .petal {
+            position: fixed;
+            top: -50px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.8;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 1;}
+            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0;}
+        }
 
-.typing{
-    white-space:pre-line;
-    font-size:16px;
-    line-height:1.6;
-    margin-top:15px;
-}
 
-.footer{
-    margin-top:25px;
-    color:#d4af37;
-    font-weight:600;
-}
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 450px;
+            max-height: 85vh;
+            background: rgba(10, 20, 40, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            z-index: 5;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
+        }
 
-.hidden{display:none;}
-</style>
+        .fingerprint-id {
+            font-size: 60px;
+            cursor: pointer;
+            transition: all 0.3s;
+            filter: drop-shadow(0 0 10px var(--gold));
+            margin: 20px 0;
+            display: inline-block;
+            animation: pulse-gold 2s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 20px var(--gold)); }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .scanning-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+            box-shadow: 0 0 15px var(--gold);
+            top: 0;
+            display: none;
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .data-header {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            color: var(--gold);
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .typing {
+            font-size: 17px;
+            line-height: 1.6;
+            text-align: center;
+            white-space: pre-line;
+            color: #e0e0e0;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            font-style: italic;
+            text-align: center;
+            color: #fff;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: block;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        .hidden { display: none; }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h2>ARQUIVO CONFIDENCIAL</h2>
+<div id="stars-container">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+</div>
 
-    <div id="face">
-        <div class="faceid">🔐</div>
-        <p>Reconhecimento Facial em andamento...</p>
-        <button onclick="iniciarContagem()">Iniciar Verificação</button>
-        <div id="count" class="countdown"></div>
+<div class="container" id="mainContainer">
+    <div class="scanning-line" id="scanner"></div>
+    
+    <div id="auth-screen">
+        <div class="data-header">SYSTEM STATUS: ENCRYPTED<br>ACCESS: RESTRICTED TO PERSONNEL ONLY</div>
+        <h2>Dossiê de Identidade</h2>
+        <p>Aguardando validação biométrica...</p>
+        
+        <div class="fingerprint-id" onclick="iniciarProcesso()">Impressão Digital 🖐️<br><span style="font-size: 12px;">(CLIQUE PARA ACESSAR)</span></div>
+        
+        <div id="status-msg" style="font-family: 'Share Tech Mono'; font-size: 14px; margin-top: 10px;"></div>
     </div>
 
-    <div id="conteudo" class="hidden">
-        <div class="medalha">🎖️</div>
-        <p><strong>STATUS:</strong> ANIVERSARIANTE DO DIA 🎂</p>
-        <p id="texto" class="typing"></p>
+    <div id="content-screen" class="hidden">
+        <div class="data-header">
+            IDENTIDADE CONFIRMADA ✅<br>
+            SUJEITO: LETHICIA NAYARA<br>
+            STATUS: ANIVERSARIANTE DO DIA
+        </div>
+        
+        <p id="texto-dossie" class="typing"></p>
 
         <div class="footer">
-    Com carinho, respeito e admiração, do seu Amigo<br>
-    <strong>
-        Nads <span class="pulse">❤️</span>
-    </strong>
+            Com carinho, respeito e admiração, do seu Amigo<br>
+            <span class="highlight" style="font-size: 24px;">Nads ❤️</span>
         </div>
     </div>
 </div>
 
 <audio id="sirene">
-    <source src="sirene.mp3">
+    <source src="sirene.mp3" type="audio/mpeg">
 </audio>
-
 <audio id="piano" loop>
-    <source src="piano.mp3">
+    <source src="piano.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const mensagem = `
-Hoje o sistema pausou todas as ocorrências.
+const mensagem = `Hoje o sistema pausou todas as ocorrências.
 
 Porque existe algo mais importante sendo registrado.
 
@@ -204,47 +307,125 @@ Feliz vida.
 
 Que ela seja do tamanho da mulher incrível que existe aí dentro. 💙`;
 
-function iniciarContagem(){
-    let tempo = 3;
-    document.getElementById("count").innerHTML = tempo;
-    let intervalo = setInterval(()=>{
-        tempo--;
-        document.getElementById("count").innerHTML = tempo;
-        if(tempo <= 0){
-            clearInterval(intervalo);
-            liberar();
-        }
-    },1000);
+function iniciarProcesso() {
+    const status = document.getElementById("status-msg");
+    const scanner = document.getElementById("scanner");
+    const sirene = document.getElementById("sirene");
+    
+    sirene.volume = 0.2;
+    sirene.play();
+    
+    scanner.style.display = "block";
+    status.innerHTML = "ESCANEANDO...";
+    
+    setTimeout(() => { status.innerHTML = "RECONHECENDO ATRIBUTOS..."; }, 1000);
+    setTimeout(() => { status.innerHTML = "IDENTIDADE CONFIRMADA."; }, 2500);
+    
+    setTimeout(() => {
+        liberar();
+    }, 4000);
 }
 
-function liberar(){
-    document.getElementById("face").style.display="none";
-    document.getElementById("conteudo").style.display="block";
+function criarPetala() {
+    const petal = document.createElement('div');
+    petal.classList.add('petal');
+    
+    const tipos = ['🌹', '🌸'];
+    
+    const sorteio = tipos[Math.floor(Math.random() * tipos.length)];
+    petal.innerHTML = sorteio; 
+    
+    petal.style.left = Math.random() * 100 + 'vw';
 
-    let sirene = document.getElementById("sirene");
-    sirene.volume = 0.25;
-    sirene.play();
+    const size = Math.random() * 20 + 15; 
+    petal.style.fontSize = size + 'px';
+  
+    const duration = Math.random() * 5 + 7;
+    petal.style.animationDuration = duration + 's';
 
-    let piano = document.getElementById("piano");
-    piano.volume = 0.4;
+    document.body.appendChild(petal);
+
+    setTimeout(() => {
+        petal.remove();
+    }, duration * 1000);
+}
+function criarBrilho() {
+    const container = document.getElementById("mainContainer");
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    
+    const rect = container.getBoundingClientRect();
+    const x = Math.random() * rect.width;
+    const y = Math.random() * rect.height;
+    
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    
+    container.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 2000);
+}
+function iniciarChuvaDePetalas() {
+    setInterval(criarPetala, 400);
+    setInterval(criarBrilho, 300);
+}
+function criarBrilho() {
+    const container = document.getElementById("mainContainer");
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    const rect = container.getBoundingClientRect();
+    sparkle.style.left = Math.random() * rect.width + 'px';
+    sparkle.style.top = Math.random() * rect.height + 'px';
+    container.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 2000);
+}
+
+function liberar() {
+    document.getElementById("auth-screen").classList.add("hidden");
+    document.getElementById("content-screen").classList.remove("hidden");
+    document.getElementById("scanner").style.display = "none";
+
+    document.body.classList.add("celebrating");
+    document.getElementById("stars-container").style.display = "block";
+    iniciarChuvaDePetalas();
+
+    const sirene = document.getElementById("sirene");
+    const piano = document.getElementById("piano");
+    
+    let fadeOut = setInterval(() => {
+        if (sirene.volume > 0.05) {
+            sirene.volume -= 0.05;
+        } else {
+            sirene.pause();
+            clearInterval(fadeOut);
+        }
+    }, 200);
+
+    piano.volume = 0;
     piano.play();
+    let fadeIn = setInterval(() => {
+        if (piano.volume < 0.5) {
+            piano.volume += 0.05;
+        } else {
+            clearInterval(fadeIn);
+        }
+    }, 200);
 
     escreverTexto();
 }
 
-function escreverTexto(){
-    let i=0;
-    const velocidade=28;
-    function digitar(){
-        if(i < mensagem.length){
-            document.getElementById("texto").innerHTML += mensagem.charAt(i);
+function escreverTexto() {
+    let i = 0;
+    const target = document.getElementById("texto-dossie");
+    function digitar() {
+        if (i < mensagem.length) {
+            target.innerHTML += mensagem.charAt(i);
             i++;
-            setTimeout(digitar,velocidade);
+            document.getElementById("mainContainer").scrollTop = document.getElementById("mainContainer").scrollHeight;
+            setTimeout(digitar, 35);
         }
     }
     digitar();
 }
-
 </script>
 
 </body>
