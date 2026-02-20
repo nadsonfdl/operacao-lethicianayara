@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquivo Ultra Confidencial</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#0a1a2f,#111);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    color:#fff;
+}
+
+/* Luz viatura elegante */
+body::before, body::after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:50%;
+    height:100%;
+    opacity:0.04;
+    animation:flash 2s infinite alternate;
+}
+body::before{left:0;background:#8B0000;}
+body::after{right:0;background:#001f5c;animation-delay:1s;}
+
+@keyframes flash{
+    from{opacity:0.02;}
+    to{opacity:0.10;}
+}
+
+.container{
+    position:relative;
+    width:92%;
+    max-width:420px;
+    background:rgba(10,20,40,0.97);
+    border:2px solid #d4af37;
+    padding:30px;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(212,175,55,0.4);
+    z-index:1;
+}
+
+button{
+    margin-top:20px;
+    background:#d4af37;
+    color:#0a1a2f;
+    border:none;
+    padding:12px 25px;
+    font-weight:bold;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.hidden{display:none;}
+
+.faceid{
+    font-size:50px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{opacity:0.5;}
+    50%{opacity:1;}
+    100%{opacity:0.5;}
+}
+
+.countdown{
+    font-size:28px;
+    margin-top:15px;
+    color:#d4af37;
+}
+
+.medalha{
+    font-size:40px;
+    animation:cair 1s ease-out;
+}
+
+@keyframes cair{
+    from{transform:translateY(-40px);opacity:0;}
+    to{transform:translateY(0);opacity:1;}
+}
+
+.footer{
+    margin-top:20px;
+    color:#d4af37;
+}
+
+.typing{white-space:pre-line;}
+
+.heart{
+    position:absolute;
+    color:#d4af37;
+    animation:subir 4s linear infinite;
+    font-size:14px;
+    opacity:0.6;
+}
+
+@keyframes subir{
+    from{transform:translateY(100vh);opacity:0;}
+    to{transform:translateY(-10vh);opacity:0.8;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>ARQUIVO CONFIDENCIAL</h2>
+
+    <div id="face">
+        <div class="faceid">🔐</div>
+        <p>Reconhecimento Facial em andamento...</p>
+        <button onclick="iniciarContagem()">Iniciar Verificação</button>
+        <div id="count" class="countdown"></div>
+    </div>
+
+    <div id="conteudo" class="hidden">
+        <div class="medalha">🎖️</div>
+        <p><strong>STATUS:</strong> ANIVERSARIANTE DO DIA 🎂</p>
+        <p id="texto" class="typing"></p>
+
+        <div class="footer">
+            Com carinho, respeito e admiração,<br>
+            <strong>Nads</strong>
+        </div>
+    </div>
+</div>
+
+<!-- Áudios -->
+<audio id="sirene">
+    <source src="https://actions.google.com/sounds/v1/emergency/emergency_siren.ogg" type="audio/ogg">
+</audio>
+
+<audio id="piano" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b64f3.mp3?filename=happy-birthday-piano-version-112194.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const mensagem = `
+Hoje o sistema pausou todas as ocorrências.
+
+Porque existe algo mais importante sendo registrado.
+
+Não é sobre plantão.
+Não é sobre escala.
+Não é sobre a responsabilidade que você carrega todos os dias.
+
+É sobre você.
+
+Sobre a mulher que veste coragem como uniforme,
+que transforma pressão em postura,
+que carrega firmeza na voz
+e ainda assim mantém delicadeza no coração.
+
+Existe algo raro em você.
+
+Uma força que não endurece.
+Uma autoridade que não apaga a luz.
+Uma presença que impõe respeito
+sem precisar perder a suavidade.
+
+Que Deus te proteja em cada saída,
+em cada sirene que tocar,
+em cada passo que você der rumo aos seus sonhos.
+
+Que Ele coloque anjos ao seu redor
+em cada missão.
+Que te guarde quando o mundo estiver agitado.
+E que renove sua paz sempre que o cansaço tentar chegar.
+
+Que sua coragem nunca silencie sua sensibilidade.
+Que sua determinação nunca apague seu sorriso.
+E que você nunca deixe de ser essa mistura bonita
+de firmeza e luz.
+
+Hoje é seu aniversário.
+
+E o mundo fica melhor
+porque você faz parte dele.
+
+Que sua vida seja longa.
+Que seus caminhos sejam seguros.
+Que seus sonhos sejam ousados.
+E que sua felicidade seja prioridade absoluta.
+
+Você honra a farda.
+Mas, acima de tudo,
+honra quem você é.
+
+Feliz vida.
+
+Que ela seja do tamanho da mulher incrível que existe aí dentro. 💙`;
+
+function iniciarContagem(){
+    let tempo = 3;
+    document.getElementById("count").innerHTML = tempo;
+    let intervalo = setInterval(()=>{
+        tempo--;
+        document.getElementById("count").innerHTML = tempo;
+        if(tempo <= 0){
+            clearInterval(intervalo);
+            liberar();
+        }
+    },1000);
+}
+
+function liberar(){
+    document.getElementById("face").style.display="none";
+    document.getElementById("conteudo").style.display="block";
+
+    let sirene = document.getElementById("sirene");
+    sirene.volume = 0.25;
+    sirene.play();
+
+    let piano = document.getElementById("piano");
+    piano.volume = 0.4;
+    piano.play();
+
+    escreverTexto();
+    criarCoracoes();
+}
+
+function escreverTexto(){
+    let i=0;
+    const velocidade=28;
+    function digitar(){
+        if(i < mensagem.length){
+            document.getElementById("texto").innerHTML += mensagem.charAt(i);
+            i++;
+            setTimeout(digitar,velocidade);
+        }
+    }
+    digitar();
+}
+
+function criarCoracoes(){
+    setInterval(()=>{
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="♥";
+        heart.style.left=Math.random()*100+"vw";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),4000);
+    },900);
+}
+</script>
+
+</body>
+</html>
