@@ -52,7 +52,16 @@ body::after{right:0;background:#001f5c;animation-delay:1s;}
     z-index:1;
     overflow-y:auto;
 }
+.pulse{
+    animation: pulsar 1.2s infinite;
+    display:inline-block;
+}
 
+@keyframes pulsar{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.25);}
+    100%{transform:scale(1);}
+}
 /* Barra de rolagem estilizada */
 .container::-webkit-scrollbar {
     width:6px;
@@ -119,8 +128,10 @@ button{
         <p id="texto" class="typing"></p>
 
         <div class="footer">
-            Com carinho, respeito e admiração,<br>
-            <strong>Nads</strong>
+    Com carinho, respeito e admiração,<br>
+    <strong>
+        Nads <span class="pulse">❤️</span>
+    </strong>
         </div>
     </div>
 </div>
@@ -216,7 +227,6 @@ function liberar(){
     piano.play();
 
     escreverTexto();
-    criarCoracoes();
 }
 
 function escreverTexto(){
@@ -232,16 +242,6 @@ function escreverTexto(){
     digitar();
 }
 
-function criarCoracoes(){
-    setInterval(()=>{
-        let heart=document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="♥";
-        heart.style.left=Math.random()*100+"vw";
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),4000);
-    },900);
-}
 </script>
 
 </body>
