@@ -107,19 +107,18 @@
         .container {
             position: relative;
             width: 90%;
-            max-width: 450px;
+            max-width: 420px;
             max-height: 85vh;
-            background: rgba(10, 20, 40, 0.85);
+            background: rgba(10, 20, 40, 0.9);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* Suporte para iPhone antigo */
             border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 30px;
-            border-radius: 30px;
+            padding: 25px;
+            border-radius: 25px;
             text-align: center;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
             z-index: 5;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--gold) transparent;
         }
 
         .fingerprint-id {
